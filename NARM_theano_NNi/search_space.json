@@ -1,0 +1,5 @@
+{
+    "hidden_units":{"_type":"quniform","_value":[50, 200, 10]},
+    "batch_size": {"_type":"quniform","_value":[64, 1024, 10]},
+    "lr":{"_type":"uniform","_value":[0.0001, 0.1]}
+}

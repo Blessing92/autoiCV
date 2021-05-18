@@ -1,0 +1,4 @@
+{
+    "batchSize": {"_type":"quniform","_value":[100, 200, 10]},
+    "lr":{"_type":"uniform","_value":[ 0.0001, 0.1]}
+}

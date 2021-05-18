@@ -1,0 +1,29 @@
+authorName: perseverance
+experimentName: csrm_tensorflow_bohb
+trialConcurrency: 1
+maxExecDuration: 720h
+maxTrialNum: 400
+#choice: local, remote, pai
+trainingServicePlatform: local
+searchSpacePath: search_space.json
+#choice: true, false
+useAnnotation: false
+advisor:
+  #choice: Hyperband, BOHB
+  #(BOHB should be installed through nnictl)
+  builtinAdvisorName: BOHB
+  classArgs:
+    max_budget: 27
+    min_budget: 1
+    eta: 3
+    optimize_mode: maximize
+    min_points_in_model: 7
+    top_n_percent: 15
+    num_samples: 64
+    random_fraction: 0.33
+    bandwidth_factor: 3.0
+    min_bandwidth: 0.001
+trial:
+  command: python3 main.py
+  codeDir: .
+  gpuNum: 0

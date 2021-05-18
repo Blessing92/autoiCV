@@ -1,0 +1,2 @@
+path,train,test,SessionID,ItemID,freq,name
+~/Documents/Datasets/RecSys,4-3(16 portion).csv,recSys15Valid.csv,SessionID,ItemID,0,rec

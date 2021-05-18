@@ -1,0 +1,2 @@
+path,train,test,sessionid,itemid,freq,name
+~/Documents/Datasets/Digintica,4-4(64 portion).csv,Digintica_test.csv,sessionId,itemId,0,digi
