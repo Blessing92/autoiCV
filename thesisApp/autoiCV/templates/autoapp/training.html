@@ -1,0 +1,60 @@
+<!doctype html>
+{% extends "autoapp/base.html"%}
+  {% block body_block %}
+
+    <div class="training-container">
+      <div class="baseline-container">
+        <h5 class="baseline-title">Hyper-parameters optimization and Trainings</h5>
+      </div>
+        <div class="model-cont">
+          <p class="mod">The selected Model is: <b>{{choice}}</b></p>
+        </div>
+        
+        <div class="output-container">
+          <div class="row">
+
+            <!-- Upload form -->
+            <div class="col-sm">
+              <div class="upload-training">
+                <div class="content">
+                    <h4><b>Upload the dataset again</b></h4>
+                    <p>Make sure that your dataset contains sessionID and itemID</p>
+                    <form id="ulpload-form" action="{% url 'autoapp:upload_csv' %}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                      {% csrf_token %}
+                      <div class="form-group">
+                        <label for="name" class="col-md-3 col-sm-3 col-xs-12 control-label"></label>
+                        <div class="col-md-8">
+                          <input type="file" name="csv_file" id="csv_file" required="True" class="form-control">
+                        </div>
+                      </div>
+                      <div class="mybutton">
+                          <div class="form-group">
+                          <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+                               <button class="btn btn-primary"> <span class="fa fa-upload" aria-hidden="true"
+                                                                      style="margin-right:5px;"></span>Upload </button>
+                          </div>
+                      </div>
+                      </div>
+                      <div class="error">
+                          {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                          {% endif %}
+                      </div>
+                    </form>
+                  </div>
+              </div>
+            </div>
+            <div class="col-sm">
+              <h5 class="opt-title">Optimization status</h5>
+              <p>Status: </p>
+              <!-- <textarea class="form-control" id="chat-text" rows="20"></textarea><br> -->
+              <!-- <p id="app">{{text}}</p> -->
+            </div>
+          </div>
+        </div>
+    </div>
+  {% endblock %}

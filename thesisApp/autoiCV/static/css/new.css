@@ -1,0 +1,93 @@
+.upload {
+    width: 100%;
+    height: 350px;
+    margin-top: 80px;
+    background-color: #d8e3e7;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.welcome {
+    margin-top: 80px;
+}
+
+.model-selection {
+    width: 100%;
+    margin-top: 80px;
+    height: 350px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f5f4f4;
+}
+
+.mybutton {
+    margin-top: 20px;
+}
+
+.content {
+    margin-left: 20px;
+    padding-top: 40px;
+}
+
+.content-left {
+    width: 80%;
+    margin-left: 20px;
+    padding-top: 10px;
+}
+
+.rowslabel {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: #132c33;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.error {
+    padding-top: 20px;
+    color: #7b113a;
+    font-family: bold;
+}
+
+ul {
+    list-style-type:none;
+}
+
+.prop {
+   font-family: 'Montserrat', sans-serif;
+   padding: 10px;
+}
+
+.copright {
+    margin-left: 20px;
+}
+
+.predicted {
+    margin-left: 20px;
+    margin-top: 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+}
+
+
+.model-title {
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding-top: 40px;
+}
+
+.left-title {
+    color: #126e82;
+}
+
+
+/* Training page style */
+.training-container {
+    margin-top: 70px;
+}
+
+.start-button {
+    margin-top: 20px;
+}
+
+.par {
+    margin-left: 20px;
+}

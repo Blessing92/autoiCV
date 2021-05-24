@@ -1,0 +1,110 @@
+<!doctype html>
+{% extends "autoapp/base.html"%}
+  {% block body_block %}
+    <div class="welcome">
+      <div class="baseline-container">
+        <h5 class="baseline-title">Brief description of Session based recommendation systems</h5>
+      </div>
+      <p>Recommender systems (RS) are software applications that help users to find the item of interest based on their
+      navigation behavior, usually with the aim of helping them in order to overcome information overload or make
+      informed choices. This process is typically based on the assumption that long-term preference information about
+      the individual users is available to the system</p>
+    </div>
+    <div>
+      <a href="{% url 'autoapp:upload_csv' %}">Start the process--></a>
+    </div>
+    <div class="description">
+      <div class="baseline">
+        <div class="baseline-container">
+          <h4 class="baseline-title">Baseline methods</h4>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm">
+            <div class="text-container">
+              <div class="text-cont">
+                <h5 class="text-title">Session-Based Popular Products (S-POP)</h5>
+                  <p>This algorithm is based on session popularity predictor that gives higher scores to items with higher number of occurrences in the session. Ties are broken up by adding the popularity score of the item</p>
+                  <p><b>It doesn’t care about any item features.</b>It just recommends popular items viewed by the user in the same session and popular items in general.</p>
+              </div>
+            </div>
+            
+          </div>
+          <div class="col-sm">
+            <div class="text-container">
+              <div class="text-cont">
+                <h5 class="text-title">Vector Multiplication Session-based K-Nearest Neighbors (VSKNN)</h5>
+                <p>Session based KNN was implemented with some sampling techniques to ensure that its performance is not too slow. The algorithm has two parameters to tune (K and N) where K = 500 is the number of nearest neighbors and N = 1000 is the number of most recent candidate sessions. Then, the score of candidate items to be recommended from these sessions can be calculated using a distance metric like cosine similarity</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="neural">
+         <div class="baseline-container">
+          <h4 class="baseline-title">Neural Based methods</h4>
+        </div>
+         <div class="row">
+           <div class="col-sm">
+             <div class="bottom-cont">
+               <div class="inner-cont">
+                  <h5 class="text-title">Collaborative session-based recommendation machine (CSRM)</h5>
+                  <p>A hybrid framework applying collaborative neighborhood information to the session-based recommendation was proposed by Wanget al.[66] who hypothesized that neigh-borhood sessions to the current session, even made by different users, can contain usefulinformation in improving the recommendation system predictions.</p>
+                  <p><b>Main advantages</b></p>
+                  <ul>
+                    <li>1. Storing recent sessions and looking for neighborhoods within these sessions canbe beneficial, especially in e-commerce, where temporal drifts in user interestsoccur frequently.</li>
+                    <li>2. Ease of including different item features in the representing item embedding vector,which can enhance the recommendations</li>
+                  </ul>
+               </div>
+             </div>
+             
+           </div>
+           <div class="col-sm">
+            <div class="bottom-cont">
+              <div class="inner-cont">
+                <h5 class="text-title">Session-based recommendation with graph neural networks (SRGNN)</h5>
+                <p>The paper introduces a new deep learning methodology for session based recommendation based on Graph neural networks (GNNs) called SR-GNN. The session sequences are modeled as a graph structured data and the GNNs are required to capture the complex transitions of items.</p>
+                 <p>This architecture solves mainly two problems in other techniques. First, without adequate user behavior in a session, these methods won’t be able in estimating the user representations. Secondly, these methods always model single way transitions between items and neglect transitions among context</p>
+              </div>
+            </div>
+             
+           </div>
+           <div class="col-sm">
+            <div class="bottom-cont">
+              <div class="inner-cont">
+                <h5 class="text-title">Short-term attention/memory priority model (STAMP)</h5>
+                <p>The paper introduces one of the session based recommendation systems based on sequence modeling using attention neural network. The main contribution in this paper is to introduce a solution to the long-term memory models (like GRU4Rec) that can be insufficient for modeling long sessions that contain user drift in his/her interests. The architecture is called STAMP as a short for short term attention priority model in which the attention weights are calculated from the session context and enhanced by current user interests to result in a compositional representation of the user temporal interests and more sensitive to the user interest drift (current interest represented by last click) occurring during the session itself</p>
+                <p><b>Issues with the Architecture:</b> The architecture currently doesn’t support items with features. So, it is just the item-ID is the only feature that characterizes each item. This needs major changes in the architecture to be able to add more item features other than the identity feature
+                 </p>
+              </div>
+            </div>
+           </div>
+         </div>
+         <div class="baseline-container">
+          <h4 class="baseline-title">Neural Based methods</h4>
+        </div>
+         <div class="row">
+            <div class="col-sm">
+              <div class="text-container">
+                <div class="text-cont">
+                  <h5 class="text-title">Neural attentive session-based recommendation (NARM)</h5>
+                  <p>The basic idea of NARM is to build a hidden representation of the current session, and then generate predictions based on it. As shown in Figure 2, the encoder converts the input click sequence x = [x1, x2, ..., xt−1, xt ] into a set of high-dimensional hidden representations h = [h1, h2, ..., ht−1, ht ], which along with the attention signal at time t (denoted as αt ), are fed to the session feature generator to build a representation of the current session to decode at time t (denoted as ct ). Finally ct is transformed by a matrix U (as part of the decoder) into an activate function to produce a ranking list over all items, y = [y1,y2,...,ym−1,ym], that can occur in the current session</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="text-container">
+                <div class="text-cont">
+                  <h5 class="text-title">Simple generative convolutional network (NextItNet)</h5>
+                  <p>The paper introduces a new deep learning model that integrates between the user history of preferences in addition to the present consumption motivations through an architecture called Behavioral Intensive Neural Network (BINN). This architecture is characterized by two parts, the weighted item2vec which is used in neural item embedding to get a unified item representation from the items attributes. In addition, the recurrent neural network which is used in discriminatory behavior learning</p>
+                </div>
+              </div>
+            </div>
+         </div>
+      </div>
+
+    </div>
+
+
+  {% endblock %}

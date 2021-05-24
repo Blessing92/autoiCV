@@ -1,0 +1,154 @@
+{% extends "autoapp/base.html"%}
+  {% block body_block %}
+    <div class="row">
+      <!-- left side of the menu -->
+      <div class="col-sm">
+        <div class="upload">
+          <div class="content">
+              <h4>Upload the dataset to start the processing</h4>
+              <p>Make sure that your dataset contains sessionID and itemID</p>
+              <form id="ulpload-form" action="{% url 'autoapp:upload_csv' %}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="name" class="col-md-3 col-sm-3 col-xs-12 control-label"></label>
+                  <div class="col-md-8">
+                    <input type="file" name="csv_file" id="csv_file" required="True" class="form-control">
+                  </div>
+                </div>
+                <div class="mybutton">
+                    <div class="form-group">
+                    <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+                         <button class="btn btn-primary"> <span class="fa fa-upload" aria-hidden="true"
+                                                                style="margin-right:5px;"></span>Upload </button>
+                    </div>
+                </div>
+                </div>
+                <div class="error">
+                    {% if messages %}
+                      <ul class="messages">
+                          {% for message in messages %}
+                          <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                          {% endfor %}
+                      </ul>
+                    {% endif %}
+                </div>
+              </form>
+            </div>
+        </div>
+      </div>
+
+      <!-- right side of the menu -->
+      <div class="col-sm">
+        <div class="model-selection">
+          <h4 class="model-title">Select the proposed model </h4>
+          <p class="par">For hyper-parameters tuning</p>
+          <div class="content-left">
+            <form action="{% url 'autoapp:training' %}">
+                <select id="select_model" name="model_choice" class="form-select" aria-label="Default select example">
+                    <option disabled="true" selected>-- Select Model --</option>
+                    <option>S-POP</option>
+                    <option>VSKNN</option>
+                    <option>CSRM</option>
+                    <option>NextItNet</option>
+                    <option>SRGNN</option>
+                    <option>STAMP</option>
+                    <option>NARM</option>
+                </select>
+                <div class="start-button">
+                  <input id="submit" type="submit" value="Start" class="btn btn-primary">
+                </div>
+            </form>
+          </div>
+
+          <div class="predicted">
+            <h5 class="pred">Predicted model: <b>{{model}}</b></h5>
+            <!-- <h5 id="app" class="pred">Counter: {{text}}</h5> -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+    
+    <div class="check">
+      <h4 class="rowslabel">Dataset Properties </h4>
+        <div class="row">
+            <div class="col-sm">
+                <h4 class="left-title">Training set</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Properties</th>
+                        </tr>
+                    </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Number of items</th>
+                          <td>{{items_tr}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Number of clicks</th>
+                          <td>{{clicks_tr}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Number of sessions</th>
+                          <td>{{sessions_tr}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Average Session Length</th>
+                          <td>{{average_session_length_tr}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Average Item Frequency</th>
+                          <td>{{average_freq_item_tr}}</td>
+                        </tr>
+                      </tbody>
+                </table>
+            </div>
+            <div class="col-sm">
+                <h4 class="left-title">Validation set</h4>
+                <table class="table table-striped">
+                <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Properties</th>
+                    </tr>
+                </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Number of items</th>
+                      <td>{{items_ts}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Number of clicks</th>
+                      <td>{{clicks_ts}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Number of sessions</th>
+                      <td>{{sessions_ts}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Average Session Length</th>
+                      <td>{{average_session_length_ts}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Average Item Frequency</th>
+                      <td>{{average_freq_item_ts}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+      document.querySelector('#submit').onclick = function (e) {
+      const messageInputDom = document.querySelector('#input');
+      const message = messageInputDom.value;
+      chatSocket.send(JSON.stringify({
+          'message': message,
+          'username': user_username,
+      }));
+      messageInputDom.value = '';
+  };
+    </script>
+  {% endblock %}
